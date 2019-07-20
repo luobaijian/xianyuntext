@@ -206,6 +206,10 @@ export default {
           query: this.form
         });
       }
+      //把搜索信息添加到本地存储
+      const airs=JSON.parse(localStorage.getItem('airs')||'[]')
+      airs.push(this.form)
+      localStorage.setItem('airs',JSON.stringify(airs))
     }
   }
 };
