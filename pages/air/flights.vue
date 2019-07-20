@@ -54,18 +54,31 @@ export default {
     };
   },
   mounted() {
-    this.$axios({
-      url: "/airs",
-      params: this.$route.query
-    }).then(res => {
-      console.log(res.data);
-      this.flightsData = res.data;
-      // 把请求回来的原始数据缓存一份，用于到时候传递给子组件
-      this.cacheDataList = { ...res.data };
-      this.setData();
-    });
+    this.getData()
+  },
+  watch: {
+    // 监听路由的变化,，同一个页面之间的跳转不会重新加载组件
+    // 1.可以通过监听$route的方法来实现
+    // 2.
+    $route() {
+      // console.log(123)
+      this.getData();
+    }
   },
   methods: {
+    //获取返回来的航班信息
+    getData() {
+      this.$axios({
+        url: "/airs",
+        params: this.$route.query
+      }).then(res => {
+        console.log(res.data);
+        this.flightsData = res.data;
+        // 把请求回来的原始数据缓存一份，用于到时候传递给子组件
+        this.cacheDataList = { ...res.data };
+        this.setData();
+      });
+    },
     //当子组件根据相关要求筛选过滤了数据之后，把数据传递过来，由主页进行渲染
     changeDataList(arr) {
       //子组件调用了这个方法之后，把得到的arr数组重新发射给父组件，让这个数组在父组件里面进行渲染
@@ -83,7 +96,7 @@ export default {
     handleCurrentChange(value) {
       // console.log(value);
       this.currentPage = value;
-      this.setData();   
+      this.setData();
     },
 
     setData() {
