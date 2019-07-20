@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div class="air-column">
-      <h2>剩机人</h2>
+      <h2>乘机人</h2>
       <el-form class="member-info">
         <div class="member-info-item"
         v-for="(item,index) in users"
@@ -33,8 +33,8 @@
     <div class="air-column">
       <h2>保险</h2>
       <div>
-        <div class="insurance-item">
-          <el-checkbox label="航空意外险：￥30/份×1  最高赔付260万" border></el-checkbox>
+        <div class="insurance-item" v-for="(item,index) in data.insuranceInfo" :key="index">
+          <el-checkbox :label="`${item.type} :¥${item.price}  最高赔付${item.compensation}元`" border></el-checkbox>
         </div>
       </div>
     </div>
@@ -67,6 +67,15 @@
 
 <script>
 export default {
+  props:{
+    data:{
+      type:Object,
+      default:{},
+    }
+  },
+  mounted () {
+    console.log(this.data.insuranceInfo);
+  },
   data () {
     return {
       users:[{
