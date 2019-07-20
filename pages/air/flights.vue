@@ -85,6 +85,8 @@ export default {
       this.currentPage = value;
       this.setData();   
     },
+
+    
     setData() {
       this.DataList = this.flightsData.flights.slice(
         (this.currentPage - 1) * this.pageSize,
