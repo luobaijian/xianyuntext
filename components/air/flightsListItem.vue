@@ -95,7 +95,7 @@ export default {
     choose(id, seat_xid) {
       this.$router.push({
         //点击之后跳转到组件名字order的组件
-        path: "/airs/order",
+        path: "/air/order",
         //拼接字符串的，要用query，是一个对象
         query: {
           id,
