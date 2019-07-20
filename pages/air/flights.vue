@@ -83,7 +83,7 @@ export default {
     handleCurrentChange(value) {
       // console.log(value);
       this.currentPage = value;
-      this.setData();
+      this.setData();   
     },
     setData() {
       this.DataList = this.flightsData.flights.slice(
